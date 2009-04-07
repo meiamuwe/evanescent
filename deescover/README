@@ -1,0 +1,63 @@
+==============================================================================
+Deescover -- Copyright (c) 2009, Uwe Keller
+==============================================================================
+
+== How to compile the solver? ==
+
+-- General requirements: 
+ 
+	* Compiler: DMD compiler v1.035 (or later)
+ 	* D-Runtime: TANGO Runtime Library v0.99.7
+
+-- WINDOWS
+	* Make sure that you have the built tool "jake" on your system 
+	  (comes with the Tango+DMD bundle)
+	* Open a command-line and change to the directory "evanescent\deescover"
+	  containing the folders "src\", "tes\", etc. 
+	* Adapt the pathes used in file "make-release.bat" to match the D installation 
+	  on your system
+	* enter "make-release.bat"
+	* find the executable in bin\
+
+-- LINUX / UNIX
+	* Make sure that you have the built tool "rebuild" on your system 
+	* Open a command-line and change to the directory "evanescent\deescover"
+	  containing the folders "src\", "tes\", etc. 
+	* execute "make-release.sh"
+	* find the executable in bin\
+
+== Usage: command-line interface ==
+
+To call test solver on a SAT problem using the command-line interface, the
+problem must be represented as a plain ASCII file following the DIMACS specification.
+
+Simply use the following command to invoke the solver: 
+ 
+deescover_release [options] -in=<input-file> 
+
+  where input must be in plain DIMACS.
+
+The following options can be used on demand to change the search process of the solver: 
+
+   -polarity-mode = {true,false,rnd}
+   -decay         = <num> [ 0 - 1 ]
+   -rnd-freq      = <num> [ 0 - 1 ]
+   -verbosity     = {0,1} ; 0 = SILENT, 1 = SOME PROGRESS INFORMATION
+
+The options mean the following: 
+
+ 	* polarity-mode: 	specifies which literal for a variable v selected at a branching point shall
+				be considered first. "true" means the positive literal for v, "false" means the
+				negative literal for v. "rnd" causes the solver to select randomly between the
+				positive and the negative literal in each branching point. 
+
+	* decay: 		rate with which variable activity is periodically decrease during the solution process.
+	
+	*  rnd-freq: 		rate of randomly selected variables to branch on during the solution process.
+
+	* verbosity: 		sets the detail of information the solver outputs during a solution process.  
+				0 = SILENT, 1 = SOME PROGRESS INFORMATION  
+
+
+
+
