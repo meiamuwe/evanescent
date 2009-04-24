@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<projectDescription>
+	<style>0</style>
+	<name>sudoku-solver</name>
+	<targetName>sudokusolver</targetName>
+	<comment>A fast solver for SUDOKU puzzles based on translation to a propositional SAT problem and the
+subsequent use of SAT solving technology</comment>
+	<filter>*.d</filter>
+	<showemptyfolder>0</showemptyfolder>
+	<zipPath />
+	<buildSpec>
+		<buildType>0</buildType>
+		<mainFile>SudokuSolver</mainFile>
+		<Args />
+		<options>
+			<dmd> -debug -unittest -w </dmd>
+			<tool />
+			<lib />
+			<implib />
+			<extra />
+			<toolextra />
+			<merge>0</merge>
+			<nonfiles>0</nonfiles>
+			<useimplib>0</useimplib>
+			<mapfile>0</mapfile>
+			<gcstub>0</gcstub>
+		</options>
+		<dmdpath />
+		<dmcpath />
+		<buildtoolexe />
+		<projectFiles>
+			<source>
+				<name>evanescent\apps\sudoku\core\Puzzle.d</name>
+				<name>evanescent\apps\sudoku\parser\Parser.d</name>
+			</source>
+			<interface />
+			<resource />
+			<othersDMD />
+			<others />
+		</projectFiles>
+		<includePaths>
+			<name>C:\dmd\import</name>
+		</includePaths>
+		<linkLibrarys />
+		<importExpressions />
+	</buildSpec>
+</projectDescription>

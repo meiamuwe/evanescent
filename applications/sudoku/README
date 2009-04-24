@@ -1,0 +1,96 @@
+==============================================================================
+Evanescent SUDOKU Solver -- Copyright (c) 2009, Uwe Keller
+==============================================================================
+
+== How to compile the solver? ==
+
+-- General requirements: 
+ 
+	* Compiler: DMD compiler v1.035 (or later)
+ 	* D-Runtime: TANGO Runtime Library v0.99.7
+
+-- WINDOWS
+	* Make sure that you have the built tool "jake" on your system 
+	  (comes with the Tango+DMD bundle)
+	* Open a command-line and change to the directory "evanescent\applications\sudoku"
+	  containing the folders "src\", "test\", etc. 
+	* Adapt the pathes used in file "make-release.bat" to match the D installation 
+	  on your system
+	* enter "make-release.bat"
+	* find the executable in bin\
+
+-- LINUX / UNIX
+	* Make sure that you have the built tool "rebuild" on your system 
+	* Open a command-line and change to the directory "evanescent\applications\sudoku"
+	  containing the folders "src\", "test\", etc. 
+	* execute "make-release.sh"
+	* find the executable in bin\
+
+
+
+== Usage: command-line interface ==
+
+To call test solver on a SUDOKU problem using the command-line interface, the
+problem must be represented as a plain ASCII file following the SUDOKU problem file 
+specification below. 
+
+Simply use the following command to invoke the solver: 
+ 
+			deescover-sudoku <sudoku-puzzle-file> 
+
+where the problem file must be a plain SUDOKU problem file.
+
+
+
+== Usage: SUDOKU puzzle file specification ==
+
+Puzzles are represented as plain ASCII files. Problem files
+consist of 4 different types of lines: 
+
+ (1) Lines starting with "c" are comments and ignored by the parser
+ (2) Lines starting with "p" are problem description lines and
+     specify the dimensions (i.e. the layout) of the puzzle: 
+     two positive integers following the 
+ (3) Empty lines are ignored and can be used to improve readabilty
+     of the file in editors
+ (4) All other lines are considered as problem content lines, i.e. 
+     to specifiy the content of the SUDOKU puzzle (the given hints). 
+     The lines are read from top to bottom. Entries in the puzzle (hints)
+     are separated by spaces and read from 
+     The problem entries are filled in row-wise from left to right. 
+     Fields that shall be left blank (free cells) are marked with 
+     non-positive integers (e.g. 0, -1) or "X","x", or "-". Line break can be used
+     at any point to improve readability of the problem content description.
+     
+ The problem description line must occur exactly once and before any
+ line specifying the content of the puzzle. Comments and empty lines
+ can be used everywhere in the file. The problem content can be specified
+ in an arbitrary number of lines. The  
+
+Here is an example of a valid SUDOKU problem descriptionf following the
+required format: 
+
+c ---------------------------------------------
+c -- A simple SUDOKU instance
+c -- The problem is not in the common 3x3 format
+c -- but instead uses regions of width 3 and 
+c -- height 2
+c ---------------------------------------------
+
+c -- Define the problem to contain cell with width 3 and height 2 
+p 3 2
+
+c -- Now we can define the actual content of the puzzle
+x x x x x 2 
+8 1 4 x x x 
+7 x x x 4 1 
+x x 3 x x 4 
+1 8 x 6 x 7 
+4 6 x 2 x x 
+
+c -- we could also use the following line to describe the same content
+c -- x x x x x 2 8 1 4 x x x 7 x x x 4 1 x x 3 x x 4 1 8 x 6 x 7 4 6 x 2 x x 
+
+c -- ... or these ones
+c -- x x x x x 2 8 1 4 x x x 7 x x x 4 1 x x 3 x x 4 
+c -- 1 8 x 6 x 7 4 6 x 2 x x 

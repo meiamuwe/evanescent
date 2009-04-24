@@ -1,0 +1,11 @@
+c ---------------------------------------------
+c -- A simple SUDOKU instance
+c -- Does not contain any hint (defined field)
+c ---------------------------------------------
+
+c -- Define the problem to contain cell with width 3 and height 2 
+p 3 2
+
+c -- Now we can define the actual content of the puzzle
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+-1 -1 -1
