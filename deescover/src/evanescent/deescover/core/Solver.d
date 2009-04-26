@@ -575,7 +575,7 @@ class Solver {
  public bool addClause(Vec!(Lit) ps)
  {
 	 debug {
-     	// Logout.trace.format("\n--- Adding Clause : ps = {}" , ps.elements());
+     	// Stdout.format("\n--- Adding Clause : ps = {}" , ps.elements());
 	 }
 	 
      assert(decisionLevel() == 0); 
@@ -1284,7 +1284,6 @@ public final bool simplify()
     }
 
     // Remove fixed variables from the variable heap:
-    // order_heap.filter(VarFilter(this));
     order_heap.filter( 
     	(int v){ // v is unassigned and is allowed to be used as a decision var
     		return (cast(bool) (this.assigns[v] == LBool.L_UNDEF) && this.decision_var[v]); 

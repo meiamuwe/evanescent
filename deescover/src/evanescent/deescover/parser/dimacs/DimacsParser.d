@@ -55,9 +55,9 @@ public class DimacsParser {
 			
 			char[] line = trim!(char)(lines.get());
 			
-			if (line.length == 0) { continue; }
-			
 			lineNumber++;
+			
+			if (line.length == 0) { continue; }
 			
 			if (line[0] == PROBLEM_METADATA_LINE_INDICATOR){
 				handler.handleProblemMetaData(lineNumber, line);

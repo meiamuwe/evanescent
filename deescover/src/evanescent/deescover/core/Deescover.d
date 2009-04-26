@@ -285,9 +285,10 @@ public int main(char[][] args){
 		Stdout.format(ret ? "s SATISFIABLE" : "s UNSATISFIABLE").newline();
 		if (ret == true){
 			Stdout.format("c ").newline();
-			for (Var i = 1; i < solver.nVars(); i++){
+			for (Var i = 1; i <= solver.nVars(); i++){
+				// Note: in the DIMACS format, the variable 0 is not used and hence skipped here
 				if (solver.modelValueOfVar(i) != LBool.L_UNDEF){
-					Stdout.format("{}{}{}", (i==1) ? "v " : " " , (solver.modelValueOfVar(i) == LBool.L_TRUE ) ? "" : "-" , i);
+					Stdout.format("{}{}{}", (i==1) ? "v " : " " , (solver.modelValueOfVar(i) == LBool.L_TRUE ) ? "" : "-" , (i) );
 				}
 			}
 			Stdout.formatln(" 0");
