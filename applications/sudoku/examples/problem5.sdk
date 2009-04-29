@@ -1,17 +1,20 @@
 p 4 4
- 1  x  4  9  x  x  5 11  3 14  x  x 10  x 15  x
- 7  x  x  x  x  x  x  x  1  x  2 16  x  x  x  x
-14  2  x 11  x  x 10  x  x  x  x  x  x  9  x 12
- 3  8  5  x  x 14  x  1  x 10  x  4  7  x  6 13
- x  x  8  x  9  6 11  x  x  2  4  3  x  x  x 10
- x  x 14  x  x  x  x  x  x  8  x  x  3  x  x  x
- x  x  1  x  3  4  x  5 14  x  x 15 11  x  x  x
- 6  5 10  x 12  x  2  8  x 11  x  x  x  4  x  9
- 9  x  6  x  x  x  3  x  4  7  x 10  x 12  2  5
- x  x  x  2  6  x  x 13  9  x  5  8  x 10  x  x 
- x  x  x 16  x  x  1  x  x  x  x  x  x  3  x  x
- 8  x  x  x 16  7  4  x  x  1 11  2  x 14  x  x
-13  7  x  1  5  x  8  x 10  x 15  x  x 16 12 14
-16  x  9  x  x  x  x  x  x  5  x  x 15  x 13  3
- x  x  x  x 13  1  x  4  x  x  x  x  x  x  x  6
- x 10  x 15  x  x  6  7 12 13  x  x  4  1  x  11
+ 1  x  4  9    x  x  5 11    3 14  x  x   10  x 15  x
+ 7  x  x  x    x  x  x  x    1  x  2 16    x  x  x  x
+14  2  x 11    x  x 10  x    x  x  x  x    x  9  x 12
+ 3  8  5  x    x 14  x  1    x 10  x  4    7  x  6 13
+
+ x  x  8  x    9  6 11  x    x  2  4  3    x  x  x 10
+ x  x 14  x    x  x  x  x    x  8  x  x    3  x  x  x
+ x  x  1  x    3  4  x  5   14  x  x 15   11  x  x  x
+ 6  5 10  x   12  x  2  8    x 11  x  x    x  4  x  9
+
+ 9  x  6  x    x  x  3  x    4  7  x 10    x 12  2  5
+ x  x  x  2    6  x  x 13    9  x  5  8    x 10  x  x 
+ x  x  x 16    x  x  1  x    x  x  x  x    x  3  x  x
+ 8  x  x  x   16  7  4  x    x  1 11  2    x 14  x  x
+
+13  7  x  1    5  x  8  x   10  x 15  x    x 16 12 14
+16  x  9  x    x  x  x  x    x  5  x  x   15  x 13  3
+ x  x  x  x   13  1  x  4    x  x  x  x    x  x  x  6
+ x 10  x 15    x  x  6  7   12 13  x  x    4  1  x  11

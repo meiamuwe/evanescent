@@ -1,7 +1,10 @@
 p 3 2
-X X X 2 X 5
-X X 6 X X X
-1 4 X X 2 6
-X 5 X X 3 X
-X 3 X X 1 X
-X X X 3 X 4
+
+X X X   2 X 5
+X X 6   X X X
+
+1 4 X   X 2 6
+X 5 X   X 3 X
+
+X 3 X   X 1 X
+X X X   3 X 4
