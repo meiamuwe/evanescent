@@ -7,7 +7,7 @@
  * Authors: Uwe Keller
  * License: MIT
  * 
- * Version: 0.1 - April 2009, initial release
+ * Version: 0.1.1 - April 2010
  */
 
 
@@ -16,7 +16,7 @@ module evanescent.apps.sudoku.parser.Parser;
 import evanescent.apps.sudoku.core.Puzzle;
 private import tango.io.model.IConduit : InputStream ;
 private import tango.text.Util : delimiters, trim;
-private import tango.text.stream.LineIterator;
+private import tango.io.stream.Lines; 
 private import tango.core.Exception;
 
 
@@ -50,7 +50,7 @@ public class SudokuParser {
 		uint entryCnt = 0; 
 
 		// Split up the input stream into lines (separated by newline symbols)
-		auto lines = new LineIterator!(char) (input);
+		auto lines = new Lines!(char) (input);
 		scope(exit) { lines.close(); }
 
 		uint lineNumber = 0;
@@ -190,15 +190,15 @@ public class SudokuParser {
 
 debug{
 	import tango.io.Stdout; 
-	import tango.io.device.FileConduit;
-}
+	import tango.io.device.File;
+
 
 unittest {
-
+	
 	Stdout.formatln("Running unit tests of [" ~ __FILE__ ~ "]");
 
 	auto p = new SudokuParser();
-	auto file = new FileConduit("\\test\\ok-1.sdk");
+	auto file = new File("test/sudoku-ok-1.txt");
 	auto problem = p.parse(file.input());
 
 	assert( problem !is null );
@@ -211,5 +211,7 @@ unittest {
 
 
 	Stdout.formatln("... done!");
+
+}
 
 }

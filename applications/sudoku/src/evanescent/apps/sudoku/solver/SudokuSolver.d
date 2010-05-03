@@ -7,7 +7,7 @@
  * Authors: Uwe Keller
  * License: MIT
  * 
- * Version: 0.1 - April 2009, initial release
+ * Version: 0.1.1 - April 2010
  */
 
 
@@ -21,8 +21,10 @@ private import evanescent.deescover.util.Vec;
 
 
 private import evanescent.apps.sudoku.core.Puzzle; 
-private import evanescent.apps.sudoku.solver.SatTransformation; 
-
+private import evanescent.apps.sudoku.solver.transform.ISatTransformation;
+private import evanescent.apps.sudoku.solver.transform.SatTransformation;
+private import evanescent.apps.sudoku.solver.transform.SolutionNotExtendingPuzzleRequirement;
+private import evanescent.apps.sudoku.solver.transform.PropositionalSignature;
 
 private import tango.io.Stdout; 
 
@@ -48,10 +50,62 @@ private import tango.io.Stdout;
  * 		P' := inverse($(I sudoku2sat))(I) is a solution to the SUDOKU puzzle P  
  *   
  * 
+ * The solver can be used to enumerate all solutions to a given SUDOKU puzzles
+ * using multiple calls to the method foundSolution()
+ * Each call to this method is guarantueed to compute a new solution, 
+ * or report that no more solutions can be found and the enumeration stops.
+ * 
+ * Hence, the solver keeps internal state representing previously 
+ * found solutions. 
+ * 
  * Authors: Uwe Keller
  */
 public class SudokuSolver {
 	
+	/**
+	 * The puzzle to solve
+	 */
+	private Puzzle puzzle; 
+	
+	/**
+	 * The solution computed previously
+	 */
+	private Puzzle previousSolution; 
+	
+	/**
+	 * The SAT solver used to solve the puzzle
+	 */
+	private Solver satSolver; 
+	
+	/**
+	 * The propositional signature used to represent the puzzle
+	 */
+	private PropositionalSignature problemSignature; 
+	
+	// ----------------------------------------------
+	// Constructors
+	// ----------------------------------------------
+
+	public this(Puzzle p)
+	in {
+		assert (p.valid()); 
+	}
+	body {
+		puzzle = p;
+		previousSolution = null;
+		
+
+		satSolver = new Solver();
+		problemSignature = new PropositionalSignature(puzzle,satSolver);
+		
+	}
+	
+	
+	
+	// ----------------------------------------------
+	// Methods
+	// ----------------------------------------------
+
 	/**
 	 * Solve a SUDOKU puzzle by instantiation all empty cells. 
 	 * 
@@ -59,51 +113,60 @@ public class SudokuSolver {
 	 * empty cells of the puzzle such that all 
 	 * SUDOKU rules are satisfied. 
 	 * 
-	 * If the puzzle is solvable the method returns true and
-	 * in the out parameter $(I solution) an extension of ($I puzzle)
-	 * that has no empty cells left and satisfies all SUDOKU rules.
-	 * If the  puzzle is unsolvable the method returns false. In this
-	 * case the out parameter $(I solution) is set to null. 
-	 * 
-	 * Params:
-	 *     puzzle = the SUDOKU puzzle to solve
-	 *     solution = the filled in puzzle (out parameter) 
+	 * The computed solution can be retrieved by a call
+	 * to $(D_CODE solution() ). 
+	 *  
+	 * Subsequent calls to the method will compute new solutions
+	 * that are different from all previously computed solutions.    
 	 *     
-	 * Returns: true iff puzzle is solvable. 
+	 * Returns: true iff puzzle has another solution that is
+	 * different from all previously computed solutions.
 	 * 
 	 */
-	public bool solve(in Puzzle puzzle, out Puzzle solution)
-	in {
-		assert (puzzle.valid()); 
-	}
+	public bool foundSolution()
 	out(result) {
 		if(result == true) { 
-			assert ( solution.solutionOf(puzzle) );
+			assert ( previousSolution !is null && previousSolution.solutionOf(puzzle) );
 		}
 	}
-	body 
+	body
 	{
 		bool isSolvable = false; 
 		
-		solution = null;
-	
-		if (puzzle.solutionOf(puzzle))
-		{ //trivial case: no need to transform to SAT and invoke the solver
-			solution = puzzle; 
-			return true;
+		ISatTransformation sudokuTransformer;
+		if (previousSolution is null)
+		{
+			// We did not yet compute any solution to the puzzle
+			
+			sudokuTransformer = 
+				new SatTransformation(satSolver,problemSignature);
+			
+			sudokuTransformer.transform(puzzle); 
+		}
+		else 
+		{
+		 	
+			 
+			// Not the first call to find a solution, hence we need to retrieve a
+			// novel solution
+			
+			// We add (to the solver we used before) additional clauses 
+			// that require the solver to look for a novel solution
+			// i.e. a solution that is different from the (and hence any) 
+			// previous solution that we have been found so far
+			
+			sudokuTransformer = 
+				new SolutionNotExtendingPuzzleRequirement(satSolver,problemSignature);
+			
+			sudokuTransformer.transform(previousSolution); 
 		}
 		
-		Solver satSolver = new Solver();
-		SatTransformation sudokuTransformer = new SatTransformation(satSolver);
-		
-		sudokuTransformer.transform(puzzle); 
-
 		if (satSolver.simplify() == true)
 		{
 			isSolvable = satSolver.solve();
 			if (isSolvable)
 			{
-				solution = sudokuTransformer.solution(); 
+				previousSolution = sudokuTransformer.solution(); 
 			} 
 
 		} else {
@@ -115,4 +178,27 @@ public class SudokuSolver {
 		
 		return isSolvable; 
 	}
+	
+	
+	/**
+	 * Get a computed solution to the puzzle. 
+	 * 
+	 * A call to this method return senseful results only
+	 * when being called after a call to foundSolution() has 
+	 * been done.
+	 * 
+	 * Returns: the most recent solution to the puzzle of the solver
+	 */
+	public Puzzle solution()
+	out(result)
+	{
+		if(result !is null ) { 
+			assert ( result.solutionOf(puzzle) );
+		}
+	}
+	body
+	{
+		return previousSolution;
+	}
+	
 }

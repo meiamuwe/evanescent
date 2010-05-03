@@ -171,6 +171,17 @@ public class Puzzle {
 		return true; 
 	}
 	
+	
+	public bool hasFilledCellAt(uint row, uint column)
+	in {
+		assert( row < numberOfRows() ); 
+		assert( column < numberOfColumns() ); 
+	}
+	body
+	{
+		return entries[ row ][ column  ] != FREE_SQUARE;
+		
+	}
 	/**
 	 * Check if this puzzle extends the given puzzle p, i.e.
 	 * if the puzzle has the same dimension than p and 
