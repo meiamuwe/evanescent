@@ -3,15 +3,15 @@ echo -----------------------------------------------------------------
 echo -- Building Evanescent SUDOKU Solver ...
 echo -----------------------------------------------------------------
 
-set PATH_TO_JAKE=\dmd\bin
-set PATH_TO_D_COMPILER_BIN_DIR=\dmd\bin
+set PATH_TO_JAKE=\dmd-tango\bin
+set PATH_TO_D_COMPILER_BIN_DIR=\dmd-tango\bin
 
 cd src
 
-%PATH_TO_JAKE%\jake -op -release -ofsudoku-solver -version=Tango -I..\..\..\deescover\src\ -Isrc\ evanescent\apps\sudoku\core\CommandLineInterface.d
+%PATH_TO_JAKE%\jake -op -O -release -inline -ofdeescover-sudoku -version=Tango -I..\..\..\deescover\src\ -Isrc\ evanescent\apps\sudoku\core\CommandLineInterface.d
 %PATH_TO_D_COMPILER_BIN_DIR%\dmd @rsp
 
-move sudoku-solver.exe ..\bin
+move deescover-sudoku.exe ..\bin
 del *.map
 del *.obj
 del rsp

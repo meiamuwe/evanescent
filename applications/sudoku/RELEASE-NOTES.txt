@@ -1,0 +1,17 @@
+==============================================================================
+Release Notes: 
+
+Evanescent SUDOKU Solver -- Copyright (c) 2010, Uwe Keller
+==============================================================================
+
+- Version 0.1.1
+ 	* Modified code to work with most recent TANGO Runtime Library v0.99.9
+ 	* Restructured code slightly, simplified and extended interface to clients slightly
+ 	  This will break current client code!
+ 	* Added the capability to enumerate different solutions to a puzzle
+ 	* Extended the command line interface to check for uniqueness of solutions for
+ 	  solvable puzzles and output an additional solution as a witness in case that
+ 	  a puzzle is not uniquely solvable
+ 	
+- Version 0.1
+	* Initial release
