@@ -3,8 +3,8 @@ echo -------------------------------------------------
 echo -- Building Deescover ...
 echo -------------------------------------------------
 
-set PATH_TO_JAKE=\dmd\bin
-set PATH_TO_D_COMPILER_BIN_DIR=\dmd\bin
+set PATH_TO_JAKE=\dmd-tango\bin
+set PATH_TO_D_COMPILER_BIN_DIR=\dmd-tango\bin
 
 cd src
 

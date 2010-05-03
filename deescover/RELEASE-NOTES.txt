@@ -1,0 +1,11 @@
+==============================================================================
+Release Notes: 
+
+Evanescent Deescover SAT Solver -- Copyright (c) 2010, Uwe Keller
+==============================================================================
+
+- Version 0.1.1
+ 	* Modified code to work with most recent TANGO Runtime Library v0.99.9
+ 	
+- Version 0.1
+	* Initial release
