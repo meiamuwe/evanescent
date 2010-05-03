@@ -1,13 +1,13 @@
 ==============================================================================
-Evanescent SUDOKU Solver -- Copyright (c) 2009, Uwe Keller
+Evanescent SUDOKU Solver -- Copyright (c) 2010, Uwe Keller
 ==============================================================================
 
 == How to compile the solver? ==
 
 -- General requirements: 
  
-	* Compiler: DMD compiler v1.035 (or later)
- 	* D-Runtime: TANGO Runtime Library v0.99.7
+	* Compiler: DMD compiler v1.041 (or later)
+ 	* D-Runtime: TANGO Runtime Library v0.99.9
 
 -- WINDOWS
 	* Make sure that you have the built tool "jake" on your system 
