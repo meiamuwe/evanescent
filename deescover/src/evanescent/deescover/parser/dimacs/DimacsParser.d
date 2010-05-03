@@ -11,14 +11,14 @@
  * Authors: Uwe Keller, 
  * License: MIT
  * 
- * Version: 0.1 - April 2009, initial release 
+ * Version: 0.1.1 - April 2010 
  */
 module evanescent.deescover.parser.dimacs.DimacsParser;
 
 private import tango.io.model.IConduit : InputStream ;
 private import tango.text.Util : trim;
 private import evanescent.deescover.parser.dimacs.IDimacsHandler;
-private import tango.text.stream.LineIterator;
+private import tango.io.stream.Lines; 
 
 
 /**
@@ -45,7 +45,7 @@ public class DimacsParser {
 	public void parse(InputStream problemData, IDimacsHandler handler) {
 
 		// Split up the input stream into lines (separated by newline symbols)
-		auto lines = new LineIterator!(char) (problemData);
+		auto lines = new Lines!(char) (problemData);
 		scope(exit) { // ensure that the input stream is closed in any case if we leave the scope
 			lines.close(); 
 		}
@@ -77,7 +77,7 @@ public class DimacsParser {
 
 debug {
 
-	import tango.io.stream.FileStream;
+	import tango.io.device.File;
 	import tango.core.Exception;
 	import tango.io.Stdout;
 	import Integer = tango.text.convert.Integer;
@@ -115,7 +115,7 @@ debug {
 		
 
 	}
-}
+
 
 unittest{
 
@@ -127,12 +127,12 @@ unittest{
 
 	char[] fileLocation; 
 
-	fileLocation = "test/sat/chnl10_11.cnf";
+	fileLocation = "test/sat/s3-3-3-1.cnf";
 
 	Stdout("- Parsing an existing file : " ~ fileLocation);
 
 	parser = new DimacsParser();
-	problemInput = (new FileInput(fileLocation)).input();
+	problemInput = (new File(fileLocation)).input();
 
 	handler = new DummyNoProblemHandler(); 
 	try {
@@ -152,7 +152,7 @@ unittest{
 	Stdout("- Parsing a non-existing file: " ~ fileLocation);
 
 	try {
-		problemInput = (new FileInput(fileLocation)).input();
+		problemInput = (new File(fileLocation)).input();
 		handler = new DummyNoProblemHandler(); 
 		parser.parse(problemInput, handler);
 		assert(false, "Should throw an exception here!");
@@ -162,5 +162,7 @@ unittest{
 
 	Stdout.formatln(" ok."); 
 	Stdout("done.").newline();
+}
+
 }
 	

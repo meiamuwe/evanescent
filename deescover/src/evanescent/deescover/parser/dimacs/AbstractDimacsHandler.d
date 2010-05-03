@@ -230,7 +230,7 @@ public abstract class AbstractDimacsHandler : IDimacsHandler {
 
 debug {
 
-	import tango.io.stream.FileStream;
+	import tango.io.device.File;
 	import tango.core.Exception;
 	import tango.io.Stdout;
 	import tango.time.StopWatch;
@@ -252,7 +252,7 @@ debug {
 		}
 
 	}
-}
+
 
 unittest{
 
@@ -266,14 +266,14 @@ unittest{
 	double duration; 
 	char[] fileLocation; 
 
-	fileLocation = "test/sat/chnl10_11.cnf";
+	fileLocation = "test/sat/fpga10_8_sat.cnf";
 
 	Stdout("- Parsing an existing file with valid content : " ~ fileLocation);
 
 	watch.start(); 
 
 	parser = new DimacsParser();
-	problemInput = (new FileInput(fileLocation)).input();
+	problemInput = (new File(fileLocation)).input();
 
 	handler = new DummyCNFHandler(); 
 	try {
@@ -295,7 +295,7 @@ unittest{
 	watch.start(); 
 
 	parser = new DimacsParser();
-	problemInput = (new FileInput(fileLocation)).input();
+	problemInput = (new File(fileLocation)).input();
 
 	handler = new DummyCNFHandler(); 
 	try {
@@ -321,7 +321,7 @@ unittest{
 		watch.start(); 		
 
 		try {
-			problemInput = (new FileInput(fileLocation)).input();
+			problemInput = (new File(fileLocation)).input();
 			handler = new DummyCNFHandler(); 
 			parser.parse(problemInput, handler);
 			assert(false, "Should throw an exception here!");
@@ -338,5 +338,9 @@ unittest{
 
 	Stdout.newline();
 	Stdout("done.").newline();
+	
 }
+
+}
+
 	

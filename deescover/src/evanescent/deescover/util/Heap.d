@@ -17,10 +17,6 @@ module evanescent.deescover.util.Heap;
 
 import evanescent.deescover.util.Vec;
 
-debug{
-	import tango.io.Stdout;
-}
-
 alias bool delegate (int, int) Comp;
 
 /**
@@ -156,7 +152,7 @@ public class Heap {
     
     }
     
-    public public int  removeMin()
+    public int  removeMin()
     in {
     	assert( this.size() > 0 );
     }
@@ -227,6 +223,10 @@ public class Heap {
 }
 
 
+
+debug{
+	private import tango.io.Stdout;
+
 unittest {
 	Stdout("Unit Testing [datastructures.Heap] ... ");
 	
@@ -258,5 +258,7 @@ unittest {
 	
 	Stdout(" done.").newline();
 	
+
+}
 
 }

@@ -43,7 +43,7 @@ private import tango.stdc.stdlib : exit ;
 
 private import tango.io.model.IConduit : InputStream;
 private import tango.core.Exception;
-private import tango.io.stream.FileStream;
+private import tango.io.device.File;
 
 private import evanescent.deescover.core.clause.Clause;
 
@@ -210,7 +210,7 @@ public int main(char[][] args){
 	});
 
 	parser.bindPosix("in",(char[] value){
-		inStream = (new FileInput(value)).input();
+		inStream = (new File(value)).input();
 	});
 
 

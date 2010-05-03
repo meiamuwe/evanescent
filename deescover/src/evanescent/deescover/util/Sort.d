@@ -45,7 +45,7 @@ template Sort (T) {
 			for (int i=0, j=1; j < size; i++, j++){
 				e1 = array[i]; 
 				e2 = array[j];
-				if ( !lt(e1,e2) ){
+				if ( !( lt(e1,e2) || e1 == e2)  ){
 					debug {
 						Stdout.formatln("ERROR: found elements in wrong order: x = {}\ny = {}\n x < y = {}" , e1, e2, lt(e1,e2));
 					}
@@ -199,7 +199,7 @@ debug {
 
 
 	}
-}	
+
 unittest {
 
 	Stdout("Unit Testing [datastructures.Sort] ... ").newline;
@@ -214,4 +214,6 @@ unittest {
 	
 
 	Stdout("done.").newline();
+}
+
 }
