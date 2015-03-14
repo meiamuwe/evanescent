@@ -15,7 +15,7 @@ The project is meant to be
 
 For now the library focusses only on algorithms for the classical [propositional satisfiability problem](http://en.wikipedia.org/wiki/Boolean_satisfiability_problem) (SAT).
 
-The library includes a state-of-the-art SAT solver [deescover](http://code.google.com/p/evanescent/wiki/Deescover) written in D. At present, the deescover represents a port of the excellent [MiniSAT](http://minisat.se/) solver written in C++ by [Niklas Eén](http://een.se/niklas/) and [Niklas Sörensson](http://www.cs.chalmers.se/~nik/). deescover provides support for **incremental SAT solving**, i.e. solving series of similar SAT problems, as it is e.g. common for bounded-model checking and AI planning applications.
+The library includes a state-of-the-art SAT solver [Deescover](https://github.com/meiamuwe/evanescent/blob/wiki/Deescover.md) written in D. At present, the deescover represents a port of the excellent [MiniSAT](http://minisat.se/) solver written in C++ by [Niklas Eén](http://een.se/niklas/) and [Niklas Sörensson](http://www.cs.chalmers.se/~nik/). deescover provides support for **incremental SAT solving**, i.e. solving series of similar SAT problems, as it is e.g. common for bounded-model checking and AI planning applications.
 
 
 # Future Plans #
@@ -43,6 +43,9 @@ To demonstrate the use of the tools in the evanescent toolbox, we include the fo
   * [DeescoverSUDOKU](DeescoverSUDOKU.md): a fast solver for general SUDOKU puzzles based on the [Deescover](Deescover.md) SAT solver.
 
 # News #
+  * **March 14, 2015**: 
+    * Migrated codebase from Goole Code to GitHub
+ 
   * **May 3, 2010**:
     * Released the evanescent tool suite version 0.1.1
     * Released version 0.1.1 of the [Deescover](Deescover.md) SAT solver.
