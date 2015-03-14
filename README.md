@@ -34,13 +34,13 @@ In the long run, we may also extend the library by **algorithms for non-standard
 
 The following inference engines and tools are part of the evanescent library:
 
-  * [Deescover](Deescover.md): a **search-based SAT-solver** in the style of [CHAFF](http://www.princeton.edu/~chaff/) and [MiniSAT](http://minisat.se/) with support for **incremental SAT solving**.
+  * [Deescover](../wiki/Deescover.md): a **search-based SAT-solver** in the style of [CHAFF](http://www.princeton.edu/~chaff/) and [MiniSAT](http://minisat.se/) with support for **incremental SAT solving**.
 
 # Applications #
 
 To demonstrate the use of the tools in the evanescent toolbox, we include the following applications
 
-  * [DeescoverSUDOKU](DeescoverSUDOKU.md): a fast solver for general SUDOKU puzzles based on the [Deescover](Deescover.md) SAT solver.
+  * [DeescoverSUDOKU](../wiki/DeescoverSUDOKU.md): a fast solver for general SUDOKU puzzles based on the [Deescover](../wiki/Deescover.md) SAT solver.
 
 # News #
   * **March 14, 2015**: 
@@ -48,13 +48,13 @@ To demonstrate the use of the tools in the evanescent toolbox, we include the fo
  
   * **May 3, 2010**:
     * Released the evanescent tool suite version 0.1.1
-    * Released version 0.1.1 of the [Deescover](Deescover.md) SAT solver.
-    * Released [DeescoverSUDOKU](DeescoverSUDOKU.md) version 0.1.1
+    * Released version 0.1.1 of the [Deescover](../wiki/Deescover.md) SAT solver.
+    * Released [DeescoverSUDOKU](../wiki/DeescoverSUDOKU.md) version 0.1.1
 
   * **April 26, 2009**:
     * Released the evanescent tool suite version 0.1
-    * Released version 0.1 of the [Deescover](Deescover.md) SAT solver.
-    * Released [DeescoverSUDOKU](DeescoverSUDOKU.md) version 0.1
+    * Released version 0.1 of the [Deescover](../wiki/Deescover.md) SAT solver.
+    * Released [DeescoverSUDOKU](../wiki/DeescoverSUDOKU.md) version 0.1
 
 # Related Sites #
 evanescent is also listed at the major forum for open-source projects in D, [DSource.org](http://www.dsource.org/projects/evanescent/).
